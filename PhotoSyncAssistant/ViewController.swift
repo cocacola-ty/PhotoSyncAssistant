@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
 
@@ -15,7 +16,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     let kCellCountInLine = 4
     let kPhotoCollectionViewCellId:String = "PhotoCollectionViewCellId"
     
-    //MARK: Property
+    //MARK: - Property
     lazy var collectionView:UICollectionView = {
         
         var itemSize = self.calculateItemSize()
@@ -30,7 +31,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         return collectionView
     }()
     
-    // MARK: Life Cycle
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,17 +43,33 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         self.collectionView.delegate = self as UICollectionViewDelegate
         self.collectionView.dataSource = self as UICollectionViewDataSource
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: kPhotoCollectionViewCellId)
+        
+        self.fetchPhotos()
     }
     
-    // MARK: Private Method
+    // MARK: - Private Method
+    /** 计算Cell大小 */
     func calculateItemSize() -> Int {
         let screenWidth = UIScreen.main.bounds.size.width
         let itemWidth = (Int(screenWidth)-kCellMargin*(kCellCountInLine-1)) / kCellCountInLine
         
         return itemWidth
     }
+    
+    func fetchPhotos() {
+        let collects = PHAssetCollection.fetchAssetCollections(with: PHAssetCollectionType.moment, subtype: PHAssetCollectionSubtype.albumRegular, options: Optional.none)
 
-    // MARK: Delegate
+        for i in 0..<collects.count {
+            let photoAssest = PHAsset.fetchAssets(in: collects[i], options: nil)
+            PHImageManager.default().requestImageData(for: photoAssest.firstObject!, options: nil, resultHandler: { (data, str, ori, any) in
+                print(data)
+                print(str)
+            })
+        }
+        
+    }
+
+    // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kPhotoCollectionViewCellId, for: indexPath)
         cell.backgroundColor = UIColor.red
