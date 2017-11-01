@@ -72,24 +72,34 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         formatter.dateFormat = "yyyy年MM月dd日"
         // 拿到'时刻'相册
         let collects = PHAssetCollection.fetchMoments(with: nil)
+        
         for i in 0..<collects.count {
-            let photoAssest = PHAsset.fetchAssets(in: collects[i], options: nil)
-            let asset = photoAssest.firstObject
-            let dateString = formatter.string(from: (asset?.creationDate)!)
             
-            if !self.groups.contains(dateString) {
-                self.groups.append(dateString)
+            // 拿到相册中的每一组照片资源
+            let photoAssest = PHAsset.fetchAssets(in: collects[i], options: nil)
+            
+            // 遍历这一组资源，拿到每一个照片资源
+            for i in 0..<photoAssest.count {
                 
-                var assetArray = Array<PHAsset>()
-                assetArray.append(asset!)
-                self.dataSource[dateString] = assetArray
+                let asset = photoAssest[i]
                 
-            }else {
-                // 已经有该日期的照片数组 更新该数组
-                var array = self.dataSource[dateString]
-                array!.append(asset!)
-                self.dataSource[dateString] = array
+                let dateString = formatter.string(from: (asset.creationDate)!)
+                
+                if !self.groups.contains(dateString) {
+                    self.groups.append(dateString)
+                    
+                    var assetArray = Array<PHAsset>()
+                    assetArray.append(asset)
+                    self.dataSource[dateString] = assetArray
+                    
+                }else {
+                    // 已经有该日期的照片数组 更新该数组
+                    var array = self.dataSource[dateString]
+                    array!.append(asset)
+                    self.dataSource[dateString] = array
+                }
             }
+            
         }
         
     }
