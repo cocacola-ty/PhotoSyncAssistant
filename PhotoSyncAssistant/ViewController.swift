@@ -19,8 +19,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     let kPhotoCollectionViewCellId:String = "PhotoCollectionViewCellId"
     let kPhotoCollectionViewReuseHeaderId: String = "PhotoCollectionViewReuseHeaderId"
     
-    var dataSource: Dictionary<String, Array<PHAsset>>! = Dictionary<String, Array<PHAsset>>()
-    var groups: Array<String>! = Array()
+    var dataSource: Dictionary<String, Array<PHAsset>> = Dictionary<String, Array<PHAsset>>()
+    var groups: Array<String> = Array()
     
     
     //MARK: - Property
@@ -109,14 +109,14 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         let asset = array![indexPath.row]
         
         let targetWidth = self.calculateItemSize()
-        let targetSize = CGSize(width: targetWidth, height: targetWidth)
+        let targetSize = CGSize(width: targetWidth*2, height: targetWidth*2)
         
         // 设置获取图片时的配置
         let options = PHImageRequestOptions()
-        options.resizeMode = PHImageRequestOptionsResizeMode.fast
+        options.resizeMode = PHImageRequestOptionsResizeMode.exact
         options.isSynchronous = false
         
-        PHCachingImageManager.default().requestImage(for: asset, targetSize: targetSize, contentMode: PHImageContentMode.aspectFit, options: options) { (image, dict) in
+        PHCachingImageManager.default().requestImage(for: asset, targetSize: targetSize, contentMode: PHImageContentMode.aspectFill, options: options) { (image, dict) in
             imageView.image = image
         }
         return cell
@@ -129,6 +129,10 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
             let key = self.groups[indexPath.section]
             
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kPhotoCollectionViewReuseHeaderId, for: indexPath)
+            
+            for view in headerView.subviews {
+                view.removeFromSuperview()
+            }
             
             let titleLabel = UILabel()
             titleLabel.font = UIFont.systemFont(ofSize: 15.0)
