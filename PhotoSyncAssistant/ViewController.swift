@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import Photos
+import SnapKit
 
 class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
 
@@ -18,8 +19,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     let kPhotoCollectionViewCellId:String = "PhotoCollectionViewCellId"
     let kPhotoCollectionViewReuseHeaderId: String = "PhotoCollectionViewReuseHeaderId"
     
-    var dataSource: Dictionary<String, Array<PHAsset>> = Dictionary<String, Array<PHAsset>>()
-    var groups: Array<String> = Array()
+    var dataSource: Dictionary<String, Array<PHAsset>>! = Dictionary<String, Array<PHAsset>>()
+    var groups: Array<String>! = Array()
     
     
     //MARK: - Property
@@ -53,7 +54,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         self.collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: kPhotoCollectionViewReuseHeaderId)
         
         self.fetchPhotos()
-        print(self.groups)
     }
     
     // MARK: - Private Method
@@ -103,6 +103,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         cell.contentView.addSubview(imageView)
         imageView.frame = cell.bounds
         
+        // 获取资源
         let key = self.groups[indexPath.section]
         let array = self.dataSource[key]
         let asset = array![indexPath.row]
@@ -110,6 +111,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         let targetWidth = self.calculateItemSize()
         let targetSize = CGSize(width: targetWidth, height: targetWidth)
         
+        // 设置获取图片时的配置
         let options = PHImageRequestOptions()
         options.resizeMode = PHImageRequestOptionsResizeMode.fast
         options.isSynchronous = false
@@ -131,8 +133,11 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
             let titleLabel = UILabel()
             titleLabel.font = UIFont.systemFont(ofSize: 15.0)
             titleLabel.text = key
-            titleLabel.frame = headerView.bounds
             headerView.addSubview(titleLabel)
+            titleLabel.snp.makeConstraints({ (make) in
+                make.left.equalTo(headerView.snp.left).offset(8)
+                make.centerY.equalTo(headerView.snp.centerY)
+            })
             
             return headerView
         }else {
