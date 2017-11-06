@@ -170,5 +170,9 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         return self.groups.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVc:TYPhotoDetailViewController = TYPhotoDetailViewController()
+        self.navigationController?.pushViewController(detailVc, animated: true)
+    }
 }
 
