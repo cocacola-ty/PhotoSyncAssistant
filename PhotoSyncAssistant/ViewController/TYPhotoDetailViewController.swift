@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class TYPhotoDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -14,6 +15,9 @@ class TYPhotoDetailViewController: UIViewController, UICollectionViewDelegate, U
     
     let kScreenWidth = UIScreen.main.bounds.size.width
     let kScreenHeight = UIScreen.main.bounds.size.height
+    
+    var assetArray:Array<PHAsset>?
+    
     
     lazy var collectionView:UICollectionView = {
         let flowLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()

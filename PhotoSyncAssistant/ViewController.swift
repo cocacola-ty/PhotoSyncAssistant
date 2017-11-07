@@ -21,6 +21,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     
     var dataSource: Dictionary<String, Array<PHAsset>> = Dictionary<String, Array<PHAsset>>()
     var groups: Array<String> = Array()
+    var assetArray: Array<PHAsset> = Array()
     
     
     //MARK: - Property
@@ -98,6 +99,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
                     array!.append(asset)
                     self.dataSource[dateString] = array
                 }
+                self.assetArray.append(asset)
             }
             
         }
@@ -172,6 +174,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVc:TYPhotoDetailViewController = TYPhotoDetailViewController()
+        detailVc.assetArray = self.assetArray
         self.navigationController?.pushViewController(detailVc, animated: true)
     }
 }
