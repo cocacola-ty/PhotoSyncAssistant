@@ -13,6 +13,7 @@
 		619419C21FA1D285007C5CA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 619419C01FA1D285007C5CA3 /* Main.storyboard */; };
 		619419C41FA1D285007C5CA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 619419C31FA1D285007C5CA3 /* Assets.xcassets */; };
 		619419C71FA1D285007C5CA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 619419C51FA1D285007C5CA3 /* LaunchScreen.storyboard */; };
+		619694781FB16676005E199C /* TYPhotoDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619694771FB16676005E199C /* TYPhotoDetailCollectionViewCell.swift */; };
 		61CC09291FB0643B00831603 /* TYPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CC09281FB0643B00831603 /* TYPhotoDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		619419C31FA1D285007C5CA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		619419C61FA1D285007C5CA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		619419C81FA1D285007C5CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		619694771FB16676005E199C /* TYPhotoDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYPhotoDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		61CC09281FB0643B00831603 /* TYPhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		84AF7546E9BA939F0904BECB /* Pods-PhotoSyncAssistant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoSyncAssistant.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoSyncAssistant/Pods-PhotoSyncAssistant.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +82,7 @@
 		619419BB1FA1D285007C5CA3 /* PhotoSyncAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				619694761FB16662005E199C /* View */,
 				61CC09271FB0641300831603 /* ViewController */,
 				619419BC1FA1D285007C5CA3 /* AppDelegate.swift */,
 				619419BE1FA1D285007C5CA3 /* ViewController.swift */,
@@ -89,6 +92,14 @@
 				619419C81FA1D285007C5CA3 /* Info.plist */,
 			);
 			path = PhotoSyncAssistant;
+			sourceTree = "<group>";
+		};
+		619694761FB16662005E199C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				619694771FB16676005E199C /* TYPhotoDetailCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		61CC09271FB0641300831603 /* ViewController */ = {
@@ -223,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				619419BF1FA1D285007C5CA3 /* ViewController.swift in Sources */,
+				619694781FB16676005E199C /* TYPhotoDetailCollectionViewCell.swift in Sources */,
 				619419BD1FA1D285007C5CA3 /* AppDelegate.swift in Sources */,
 				61CC09291FB0643B00831603 /* TYPhotoDetailViewController.swift in Sources */,
 			);

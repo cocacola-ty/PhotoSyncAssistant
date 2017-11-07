@@ -35,10 +35,11 @@ class TYPhotoDetailViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.automaticallyAdjustsScrollViewInsets = false;
         self.view.addSubview(self.collectionView)
         self.collectionView.delegate = self as UICollectionViewDelegate
         self.collectionView.dataSource = self as UICollectionViewDataSource
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: kTYPhotoDetailViewCellReuseId)
+        self.collectionView.register(TYPhotoDetailCollectionViewCell.self, forCellWithReuseIdentifier: kTYPhotoDetailViewCellReuseId)
     }
 
     override func updateViewConstraints() {
@@ -58,13 +59,17 @@ class TYPhotoDetailViewController: UIViewController, UICollectionViewDelegate, U
     
     // MARK: - Delegate & DataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kTYPhotoDetailViewCellReuseId, for: indexPath)
-        cell.backgroundColor = UIColor.red
+        let cell:TYPhotoDetailCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: kTYPhotoDetailViewCellReuseId, for: indexPath) as! TYPhotoDetailCollectionViewCell
+//        cell.backgroundColor = UIColor.red
+        
+        PHCachingImageManager.default().requestImage(for: self.assetArray![indexPath.row], targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.aspectFit, options: nil) { (image, info) in
+            cell.imageView.image = image
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return self.assetArray!.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
