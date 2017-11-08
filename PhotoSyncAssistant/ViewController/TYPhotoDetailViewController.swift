@@ -17,6 +17,7 @@ class TYPhotoDetailViewController: UIViewController, UICollectionViewDelegate, U
     let kScreenHeight = UIScreen.main.bounds.size.height
     
     var assetArray:Array<PHAsset>?
+    var index:NSInteger?
     
     
     lazy var collectionView:UICollectionView = {
@@ -37,18 +38,25 @@ class TYPhotoDetailViewController: UIViewController, UICollectionViewDelegate, U
         
         self.automaticallyAdjustsScrollViewInsets = false;
         self.view.addSubview(self.collectionView)
+        self.collectionView.frame = self.view.bounds
         self.collectionView.delegate = self as UICollectionViewDelegate
         self.collectionView.dataSource = self as UICollectionViewDataSource
         self.collectionView.register(TYPhotoDetailCollectionViewCell.self, forCellWithReuseIdentifier: kTYPhotoDetailViewCellReuseId)
+
+        self.collectionView.scrollToItem(at: IndexPath(item: self.index!, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+    }
+    
+    override func viewDidLayoutSubviews() {
+//        self.collectionView.scrollToItem(at: IndexPath(item: 2, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        super.viewDidLayoutSubviews()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
     override func updateViewConstraints() {
-        self.collectionView.snp.remakeConstraints { (make) in
-            make.left.equalTo(self.view.snp.left)
-            make.top.equalTo(self.view.snp.top)
-            make.width.equalTo(self.view.snp.width)
-            make.height.equalTo(self.view.snp.height)
-        }
+
         super.updateViewConstraints()
     }
     // MARK: - Public Method
@@ -60,7 +68,6 @@ class TYPhotoDetailViewController: UIViewController, UICollectionViewDelegate, U
     // MARK: - Delegate & DataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:TYPhotoDetailCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: kTYPhotoDetailViewCellReuseId, for: indexPath) as! TYPhotoDetailCollectionViewCell
-//        cell.backgroundColor = UIColor.red
         
         PHCachingImageManager.default().requestImage(for: self.assetArray![indexPath.row], targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.aspectFit, options: nil) { (image, info) in
             cell.imageView.image = image

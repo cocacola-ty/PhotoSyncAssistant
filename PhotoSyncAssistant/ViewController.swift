@@ -173,8 +173,15 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let key = self.groups[indexPath.section]
+        let value = self.dataSource[key]
+        let selectAsset = value![indexPath.row]
+        
+        let index = self.assetArray.index(of: selectAsset)
+        
         let detailVc:TYPhotoDetailViewController = TYPhotoDetailViewController()
         detailVc.assetArray = self.assetArray
+        detailVc.index = index
         self.navigationController?.pushViewController(detailVc, animated: true)
     }
 }
