@@ -46,11 +46,6 @@ class TYPhotoDetailViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.scrollToItem(at: IndexPath(item: self.index!, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
     }
     
-    override func viewDidLayoutSubviews() {
-//        self.collectionView.scrollToItem(at: IndexPath(item: 2, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
-        super.viewDidLayoutSubviews()
-        
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }

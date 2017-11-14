@@ -23,6 +23,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     var groups: Array<String> = Array()
     var assetArray: Array<PHAsset> = Array()
     var indexPath: IndexPath?
+    var selectAsset: PHAsset?
     
     
     //MARK: - Property
@@ -183,6 +184,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         
         let index = self.assetArray.index(of: selectAsset)
         
+        self.selectAsset = selectAsset
+        
         let detailVc:TYPhotoDetailViewController = TYPhotoDetailViewController()
         detailVc.assetArray = self.assetArray
         detailVc.index = index
@@ -190,7 +193,9 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     }
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
+        if operation == UINavigationControllerOperation.push {
+            return TYPhotoDetailTransition()
+        }
         return nil
     }
 }
