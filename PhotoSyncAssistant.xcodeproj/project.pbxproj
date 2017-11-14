@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		425E07406904608FFC02EDC7 /* Pods_PhotoSyncAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140C703E2CF825F3AE5F7A71 /* Pods_PhotoSyncAssistant.framework */; };
+		616F0FCD1FBAFEFF004E5FF3 /* TYPhotoDetailTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616F0FCC1FBAFEFF004E5FF3 /* TYPhotoDetailTransition.swift */; };
 		619419BD1FA1D285007C5CA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619419BC1FA1D285007C5CA3 /* AppDelegate.swift */; };
 		619419BF1FA1D285007C5CA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619419BE1FA1D285007C5CA3 /* ViewController.swift */; };
 		619419C21FA1D285007C5CA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 619419C01FA1D285007C5CA3 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		140C703E2CF825F3AE5F7A71 /* Pods_PhotoSyncAssistant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoSyncAssistant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C676D3BABAF5B7D5CCEF795 /* Pods-PhotoSyncAssistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoSyncAssistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoSyncAssistant/Pods-PhotoSyncAssistant.debug.xcconfig"; sourceTree = "<group>"; };
+		616F0FCC1FBAFEFF004E5FF3 /* TYPhotoDetailTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TYPhotoDetailTransition.swift; sourceTree = "<group>"; };
 		619419B91FA1D285007C5CA3 /* PhotoSyncAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoSyncAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		619419BC1FA1D285007C5CA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		619419BE1FA1D285007C5CA3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		616F0FCB1FBAFE74004E5FF3 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				616F0FCC1FBAFEFF004E5FF3 /* TYPhotoDetailTransition.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		619419B01FA1D285007C5CA3 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +92,7 @@
 		619419BB1FA1D285007C5CA3 /* PhotoSyncAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				616F0FCB1FBAFE74004E5FF3 /* Other */,
 				619694761FB16662005E199C /* View */,
 				61CC09271FB0641300831603 /* ViewController */,
 				619419BC1FA1D285007C5CA3 /* AppDelegate.swift */,
@@ -237,6 +248,7 @@
 				619694781FB16676005E199C /* TYPhotoDetailCollectionViewCell.swift in Sources */,
 				619419BD1FA1D285007C5CA3 /* AppDelegate.swift in Sources */,
 				61CC09291FB0643B00831603 /* TYPhotoDetailViewController.swift in Sources */,
+				616F0FCD1FBAFEFF004E5FF3 /* TYPhotoDetailTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

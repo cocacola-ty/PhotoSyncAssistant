@@ -11,7 +11,7 @@ import Foundation
 import Photos
 import SnapKit
 
-class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource, UINavigationControllerDelegate {
 
     let kCellMargin = 2
     let kLineMargin = 2
@@ -22,6 +22,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     var dataSource: Dictionary<String, Array<PHAsset>> = Dictionary<String, Array<PHAsset>>()
     var groups: Array<String> = Array()
     var assetArray: Array<PHAsset> = Array()
+    var indexPath: IndexPath?
     
     
     //MARK: - Property
@@ -45,6 +46,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         super.viewDidLoad()
         
         self.navigationItem.title = "照片"
+        self.navigationController?.delegate = self as UINavigationControllerDelegate
         
         self.view.addSubview(self.collectionView)
         self.collectionView.frame = CGRect(x: 0, y: 0, width:UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
@@ -173,6 +175,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.indexPath = indexPath
+        
         let key = self.groups[indexPath.section]
         let value = self.dataSource[key]
         let selectAsset = value![indexPath.row]
@@ -183,6 +187,11 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         detailVc.assetArray = self.assetArray
         detailVc.index = index
         self.navigationController?.pushViewController(detailVc, animated: true)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return nil
     }
 }
 
